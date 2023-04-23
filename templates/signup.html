@@ -1,0 +1,231 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login System</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/signup.css' %}">
+</head>
+<body>
+    
+    <section class="left-section">
+        <div id="left-cover" class="cover cover-hide">
+            <img src="static/images/home_slider.jpg" alt=""> 
+            <h1>Welcome !</h1>
+            <h3>Already have an account ?</h3>
+            <button type="button" class="switch-btn" onclick="location.reload()">Login</button>
+        </div>
+        <div id="left-form" class="form fade-in-element">
+            <h1>Login</h1>
+            <form action="" method="post">
+                <input type="text" name="user-name" class="input-box" placeholder="User Name">
+                <input type="password" name="user-pass" class="input-box" placeholder="Password">
+                <input type="button" id="login-btn" name="login-btn" class="btn" value="Login">
+            </form>
+        </div>
+    </section>
+
+    <section class="right-section">
+        <div id="right-cover" class="cover fade-in-element">
+            <img src="static/images/home_slider.jpg" alt="">
+            <h1>Welcome !</h1>
+            <h3>Don't have an account ?</h3>
+            <button type="button" class="switch-btn" onclick="switchSignup()">Signup</button>
+        </div>
+        <div id="right-form" class="form form-hide">
+            <h1>Signup</h1>
+            <form action="" method="post">
+                <input type="text" name="suser-name" class="input-box" placeholder="User Name">
+                <input type="email" name="suser-email" class="input-box" placeholder="Email">
+                <input type="password" name="suser-pass" class="input-box" placeholder="Password">
+                <input type="password" name="suser-cpass" class="input-box" placeholder="Confirm Password">
+                <input type="button" name="signup-btn" id="signup-btn" class="btn" value="Signup">
+            </form>
+        </div>
+    </section>
+    <div id="alertpopup" style="display:none; position:fixed; z-index:1; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5);">
+        <div style="background-color:#fefefe; margin:auto; padding:10px; border:1px solid #888; width:40%; max-width:400px; text-align:center; position:absolute; top:25%; left:50%; transform:translate(-50%, -50%);">
+          <span style="color:#aaa; position:absolute; top:0px; right:10px; font-size:20px; font-weight:bold; cursor:pointer;" onclick="document.getElementById('alertpopup').style.display='none';">&times;</span>
+         <h3>Home Quest says</h3> 
+          <h6 id="alertcontent" style="color:black"></h6>
+          <button id="okButton" class="home_search_button float-right" style="width:70px;height:25px;font-size:13px">ok</button>
+        </div>
+      </div>
+
+
+</body>
+</html>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script>
+	var left_cover = document.getElementById("left-cover");
+var left_form = document.getElementById("left-form");
+
+var right_cover = document.getElementById("right-cover");
+var right_form = document.getElementById("right-form");
+
+function switchSignup() {
+right_form.classList.add("fade-in-element");
+left_cover.classList.add("fade-in-element");
+
+left_form.classList.add("form-hide");
+left_cover.classList.remove("cover-hide");
+right_form.classList.remove("form-hide");
+right_cover.classList.add("cover-hide");
+}
+
+
+
+$(document).ready(function() {
+    $("#login-btn").click(function() {
+        // get input values
+        var username = $("input[name='user-name']").val();
+        var password = $("input[name='user-pass']").val();
+
+        // validate inputs
+        if (username == "") {
+            $('#alertpopup').show();
+			$('#alertpopup #alertcontent').html("");
+			$('#alertpopup #alertcontent').html("Please enter your username.");
+			$('#okButton').click(function() {
+				$('#alertpopup').css("display","none");
+			});
+            //alert("");
+            return false;
+        }
+        if (password == "") {
+            $('#alertpopup').show();
+			$('#alertpopup #alertcontent').html("");
+			$('#alertpopup #alertcontent').html("Please enter your password.");
+			$('#okButton').click(function() {
+				$('#alertpopup').css("display","none");
+			});
+            //alert("");
+            return false;
+        }
+
+        // make AJAX call to login view
+        $.ajax({
+            type: "POST",
+            url: "/login",
+            data: {
+                "username": username,
+                "password": password,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(response) {
+                window.location.href = '/'
+				//alert("Logged in successfully!");
+            },
+            error: function(xhr, status, error) {
+                $('#alertpopup').show();
+			$('#alertpopup #alertcontent').html("");
+			$('#alertpopup #alertcontent').html("An error occurred while logging in.");
+			$('#okButton').click(function() {
+				$('#alertpopup').css("display","none");
+			});
+                //alert("An error occurred while logging in.");
+            }
+        });
+    });
+
+	$("#signup-btn").click(function() {
+        // get input values
+        var username = $("input[name='suser-name']").val();
+        var email = $("input[name='suser-email']").val();
+        var password = $("input[name='suser-pass']").val();
+        var cpassword = $("input[name='suser-cpass']").val();
+
+        // validate inputs
+        if (username == "") {
+            $('#alertpopup').show();
+			$('#alertpopup #alertcontent').html("");
+			$('#alertpopup #alertcontent').html("Please enter your username.");
+			$('#okButton').click(function() {
+				$('#alertpopup').css("display","none");
+			});
+            //alert("Please enter your username.");
+            return false;
+        }
+        if (email == "") {
+            $('#alertpopup').show();
+			$('#alertpopup #alertcontent').html("");
+			$('#alertpopup #alertcontent').html("Please enter your email.");
+			$('#okButton').click(function() {
+				$('#alertpopup').css("display","none");
+			});
+            //alert("");
+            return false;
+        }
+        if (password == "") {
+            $('#alertpopup').show();
+			$('#alertpopup #alertcontent').html("");
+			$('#alertpopup #alertcontent').html("Please enter your password.");
+			$('#okButton').click(function() {
+				$('#alertpopup').css("display","none");
+			});
+            //alert("");
+            return false;
+        }
+        if (cpassword == "") {
+            $('#alertpopup').show();
+			$('#alertpopup #alertcontent').html("");
+			$('#alertpopup #alertcontent').html("Please confirm your password.");
+			$('#okButton').click(function() {
+				$('#alertpopup').css("display","none");
+			});
+            //alert("Please confirm your password.");
+            return false;
+        }
+        if (password != cpassword) {
+            $('#alertpopup').show();
+			$('#alertpopup #alertcontent').html("");
+			$('#alertpopup #alertcontent').html("Passwords do not match.");
+			$('#okButton').click(function() {
+				$('#alertpopup').css("display","none");
+			});
+            //alert("");
+            return false;
+        }
+
+        // make AJAX call to signup view
+        $.ajax({
+            type: "POST",
+            url: "/signup",
+            data: {
+                "username": username,
+                "email": email,
+                "password": password,
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function(response) {
+                $('#alertpopup').show();
+			$('#alertpopup #alertcontent').html("");
+			$('#alertpopup #alertcontent').html("Signed up successfully!");
+			$('#okButton').click(function() {
+				$('#alertpopup').css("display","none");
+                window.location.reload();
+			});
+                //alert("");
+                
+            },
+            error: function(xhr, status, error) {
+                $('#alertpopup').show();
+                $('#alertpopup #alertcontent').html("");
+                $('#alertpopup #alertcontent').html("An error occurred while signing up.");
+                $('#okButton').click(function() {
+                    $('#alertpopup').css("display","none");
+                });
+                //alert("");
+            }
+        });
+    });
+});
+
+
+
+
+</script>

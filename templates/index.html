@@ -1,0 +1,654 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>HomeQuest</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Travello template project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+	<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="...">
+    {% comment %} <script src="{% static 'js/chat.js' %}"></script> {% endcomment %}
+</head>
+
+<body>
+
+	<div class="super_container">
+
+		<!-- Header -->
+
+		<header class="header">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="header_content d-flex flex-row align-items-center justify-content-start">
+							<div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
+								<div class="logo"><a href="/">HomeQuest</a></div>
+								<nav class="main_nav">
+									<ul class="d-flex flex-row align-items-start justify-content-start">							
+										{% if loggedIn %}
+											<li class="active"><a href="/">Home</a></li>
+											<li><a href="/wishlist">Wishlist</a></li>
+											<li><a href="/apartments">Apartments</a></li>
+											<li><a href="/logout" >Logout</li>
+										{% else %}
+										<!--set this button to right-->
+											<li class="active"><a href="/">Home</a></li>
+											<li><a href="/apartments">Apartments</a></li>
+											<li style="align:float-right"><a href="/signup">Sign up</a></li>
+										{% endif %}
+										
+										
+									</ul>
+								</nav>
+								<div class="header_phone ml-auto">Call us: +1 352 XXX XXXX</div>
+
+								<!-- Hamburger -->
+
+								<div class="hamburger ml-auto">
+									<i class="fa fa-bars" aria-hidden="true"></i>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="header_social d-flex flex-row align-items-center justify-content-start">
+				<ul class="d-flex flex-row align-items-start justify-content-start">
+					<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+				</ul>
+			</div>
+		</header>
+
+		<!-- Menu -->
+
+		<div class="menu">
+			<div class="menu_header d-flex flex-row align-items-center justify-content-start">
+				<div class="menu_logo"><a href="index.html">Travello</a></div>
+				<div class="menu_close_container ml-auto">
+					<div class="menu_close">
+						<div></div>
+						<div></div>
+					</div>
+				</div>
+			</div>
+			<div class="menu_content">
+				<ul>
+					{% if loggedIn %}
+					<li class="active"><a href="/">Home</a></li>
+					<li><a href="/wishlist">Wishlist</a></li>
+					<li><a href="/apartments">Apartments</a></li>
+					<li><a href="/logout" >Logout</li>
+					{% else %}
+					<!--set this button to right-->
+						<li class="active"><a href="/">Home</a></li>
+						<li><a href="/apartments">Apartments</a></li>
+						<li style="align:float-right"><a href="/signup">Sign up</a></li>
+					{% endif %}
+				
+				</ul>
+			</div>
+			<div class="menu_social">
+				<div class="menu_phone ml-auto">Call us: +1 352 XXX XXXX</div>
+				<ul class="d-flex flex-row align-items-start justify-content-start">
+					<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+					<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Home -->
+		
+		<div class="home">
+
+			<!-- Home Slider -->
+			<div class="home_slider_container">
+				<div class="owl-carousel owl-theme home_slider">
+
+					<!-- Slide -->
+					<div class="owl-item">
+						<div class="background_image"
+							style="background-image:url({% static 'images/home_slider.jpg' %})"></div>
+						<div class="home_slider_content_container">
+							<div class="container">
+								<div class="row">
+									<div class="col">
+										<div class="home_slider_content">
+											<div class="home_title">
+												<h2>Apartment hunt ends here !!!</h2>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Search -->
+
+		<div class="home_search">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="home_search_container">
+							<div class="home_search_title">Search your Apartments</div>
+							<div class="home_search_content">
+								<form action="#" class="home_search_form" id="home_search_form1" style="">
+									<div class="d-flex flex-lg-row flex-column align-items-start justify-content-lg-between justify-content-start">
+										<div class="col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="furnished">
+											<label class="form-check-label" for="flexCheckChecked"> Furnished </label>
+										</div>
+										<div class="col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="parking">
+											<label class="form-check-label" for="flexCheckChecked"> Parking </label>
+										</div>
+										<div class="col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="pool">
+											<label class="form-check-label" for="flexCheckChecked"> Pool </label>
+										</div>
+										<div class="col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="gatedcommunity">
+											<label class="form-check-label" for="flexCheckChecked"> Gated Community </label>
+										</div>
+										
+										{% comment %} <button class="home_search_button">search</button> {% endcomment %}
+									</div>
+									<div class="d-flex flex-lg-row flex-column align-items-start justify-content-lg-between justify-content-start">
+										<div class="col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="patio">
+											<label class="form-check-label" for="flexCheckChecked"> Patio/Balcony </label>
+										</div>
+										<div class=" col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="garden">
+											<label class="form-check-label" for="flexCheckChecked"> Garden </label>
+										</div>
+										<div class="col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="hardwoodfloors">
+											<label class="form-check-label" for="flexCheckChecked"> Hardwood Floors </label>
+										</div>
+										<div class="col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="gym">
+											<label class="form-check-label" for="flexCheckChecked"> Gym </label>
+										</div>
+									</div>
+									<div class="d-flex flex-lg-row flex-column align-items-start justify-content-lg-between justify-content-start">
+										<div class="col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="disabilityaccess">
+											<label class="form-check-label" for="flexCheckChecked"> Disability Access </label>
+										</div>
+										<div class=" col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="kidfriendly">
+											<label class="form-check-label" for="flexCheckChecked"> Kid Friendly </label>
+										</div>
+										<div class="col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="washer/dryer">
+											<label class="form-check-label" for="flexCheckChecked">  Washer/Dryer </label>
+										</div>
+										<div class="col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="dishwasher">
+											<label class="form-check-label" for="flexCheckChecked"> Dishwasher </label>
+										</div>
+									</div>
+								</form>
+								
+								
+
+								<form action="#" class="home_search_form" id="home_search_form2" >
+									<div class="d-flex flex-lg-row flex-column align-items-start justify-content-lg-between justify-content-start">
+										<div class="col-md-2 form-check">
+											
+											<input class="form-check-input" type="text" value="" id="bedroomstextbox" style="width:30px;" pattern="\d{0,3}" title="Please enter up to 3 digits only">
+											<label class="form-check-label" for="flexCheckChecked" style="margin-top: 5px;"> Bedrooms</label>
+										</div>
+										<div class="col-md-5 form-check">
+											<label for="price-range">Budget:</label>
+											<span class="price-label">$1000</span>
+											<input type="range" id="price-range" name="price-range" min="1000" max="2000" value="1500">
+											<span class="price-label">$2000</span>
+										</div>
+										<div class="col-md-4 form-check">
+											<label class="form-check-label" style="margin-top: 5px;"> Radius :</label>
+											<input class="form-check-input" type="textbox" value="" style="width:30px;margin-left: 20px;margin-right: 20px;" id="radiustxtbox">
+											<label class="form-check-label" style="margin-left: 50px;margin-top: 5px;"> miles </label>
+										</div>
+										{% comment %} <div class="col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="checkbox12">
+											<label class="form-check-label" for="flexCheckChecked"> checkbox </label>
+										</div> {% endcomment %}
+										
+										{% comment %} <button class="home_search_button">search</button> {% endcomment %}
+									</div>
+									<div class="d-flex flex-lg-row flex-column align-items-start justify-content-lg-between justify-content-start">
+										<div class="col-md-12 form-check text-center" id="property-type">
+											<label for="property-type">Select a property type:</label>
+											  <input type="radio" id="apartment" name="apartmenttype" value="apartment">
+											  <label for="apartment">Apartment</label>
+											  <input type="radio" id="condo" name="apartmenttype" value="condo">
+											  <label for="condo">Condo</label>
+											  <input type="radio" id="familyhouse" name="apartmenttype" value="familyhouse">
+											  <label for="villa">Family House</label>
+											  <input type="radio" id="any" name="apartmenttype" value="any" checked>
+											  <label for="any">Any</label>
+										</div>
+										<style>
+											#property-type input[type="radio"] {
+												margin-right: 10px;
+											  }
+											  
+											  #property-type label {
+												margin-right: 20px;
+											  }		  
+										</style>
+										{% comment %} <div class=" col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="checkbox14">
+											<label class="form-check-label" for="flexCheckChecked"> checkbox </label>
+										</div>
+										<div class="col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="checkbox15">
+											<label class="form-check-label" for="flexCheckChecked"> checkbox </label>
+										</div>
+										<div class="col-md-3 form-check">
+											<input class="form-check-input" type="checkbox" value="" id="checkbox16">
+											<label class="form-check-label" for="flexCheckChecked"> checkbox16 </label>
+										</div> {% endcomment %}
+									</div> 
+									
+								</form>
+								
+							</div>
+							<div id="nextbtn" class="buttonshide float-right " >
+								<button class="home_search_button">Next</button>
+							</div>
+							<div id="backbtn" class="buttonshide float-left " >
+								<button class="home_search_button">Back</button>
+							</div>
+							<div id="searchbtn" class="buttonshide float-right">
+								<button class="home_search_button" type="submit" >search</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% comment %}<div id="chatbot">
+			<div id="chat-header">
+				<img src="{% static 'chat.png' %}" alt="Chatbot">
+				<span>Chatbot</span>
+				<button id="chat-close">&times;</button>
+			</div>
+			 <div id="chat-body">
+				<div id="chat-messages">
+					<div class="chat-message">
+						<span class="chat-message-body">Hello, I'm a chatbot. How can I help you?</span>
+					</div>
+				</div>
+				<div id="chat-input">
+					<input type="text" placeholder="Type your message...">
+					<button>Send</button>
+				</div>
+			</div> {% endcomment %}
+			<button id="chat-button" style="position: fixed; bottom: 20px; right: 20px; z-index: 999; border-radius: 50%; background-color: #06c; color: #fff; padding: 20px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">Chat</button>
+
+			<div id="chat-container" style="display:none; position: fixed; bottom: 90px; right: 20px;min-width:320px; max-width: 400px; height: 500px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); z-index: 999;">
+			<div id="chat-header" style="background-color: #06c; color: #fff; padding: 20px; display: flex; justify-content: space-between; align-items: center; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+				<h3 style="font-size: 20px; font-weight: bold; margin: 0;">Chat with our HomeQuest bot</h3>
+				<button id="chat-close" style="border: none; background-color: transparent; font-size: 24px; cursor: pointer; color: #fff;">&times;</button>
+			</div>
+			<div id="chat-body" style="position: relative; padding: 20px; height: 400px; overflow-y: auto;margin:10px;">
+				<ul id="chat-messages" style="list-style: none; padding: 0; margin: 0;">
+				 {% comment %} <li class="bot-message" style="font-size: 16px; margin-bottom: 10px;">Hello! How can I assist you today?</li> {% endcomment %}
+				  <li class="bot-message"><div class="bot-message-box">Hello! How can I assist you today?</div></li>
+				</ul>
+				<form id="chat-form" style="position: absolute; bottom: 5px; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+				  <input type="text" name="message" placeholder="Type your message here..." style="flex: 1; padding: 10px; font-size: 16px; border-radius: 20px; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">
+				  <button type="submit" style="border: none; background-color: #06c; color: #fff; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">Send</button>
+				</form>
+			  </div>
+			</div>
+			<style>
+				.bot-message{
+				  text-align: right;
+				  margin-right: 20px;
+				}
+			  
+				.user-message {
+				  text-align: left;
+				  margin-left: 20px;
+				}
+				.user-message-box {
+					background-color: #f1f0f0;
+					color: #000;
+					margin: 10px 0;
+					padding: 10px 15px;
+					border-radius: 20px;
+					max-width: 100%;
+					align-self: flex-end;
+				}
+				
+				.bot-message-box {
+					background-color: #06c;
+					color: #fff;
+					margin: 10px 0;
+					padding: 10px 15px;
+					border-radius: 20px;
+					max-width: 100%;
+					align-self: flex-start;
+				}
+			  </style>
+
+
+		<div id="alertpopup" style="display:none; position:fixed; z-index:1; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5);">
+			<div style="background-color:#fefefe; margin:auto; padding:10px; border:1px solid #888; width:40%; max-width:400px; text-align:center; position:absolute; top:25%; left:50%; transform:translate(-50%, -50%);">
+			  <span style="color:#aaa; position:absolute; top:0px; right:10px; font-size:20px; font-weight:bold; cursor:pointer;" onclick="document.getElementById('alertpopup').style.display='none';">&times;</span>
+			 <h3>Home Quest says</h3> 
+			  <h6 id="alertcontent" style="color:black"></h6>
+			  <button id="okButton" class="home_search_button float-right" style="width:70px;height:25px;font-size:13px">ok</button>
+			</div>
+		  </div>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/Isotope/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'plugins/scrollTo/jquery.scrollTo.min.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+{% comment %} <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> {% endcomment %}
+
+</body>
+
+</html>
+
+<script>
+
+	function getCookie(name) {
+		let cookieValue = null;
+		if (document.cookie && document.cookie !== '') {
+			const cookies = document.cookie.split(';');
+			for (let i = 0; i < cookies.length; i++) {
+				const cookie = cookies[i].trim();
+				// Does this cookie string begin with the name we want?
+				if (cookie.substring(0, name.length + 1) === (name + '=')) {
+					cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+					break;
+				}
+			}
+		}
+		return cookieValue;
+	}
+	
+$(document).ready(function() {
+
+	$('#home_search_form2').hide();
+	$('.buttonshide').hide();
+	$('#nextbtn').show();
+	var selectedIds = [];
+	//var selectedIds = [];
+	var wishlistItems = [];
+	var baseUrl = "{% static 'images' %}";
+	
+  // Add item to wishlist
+  	$('.wishlist-btn').click(function() {
+    	var itemId = $(this).attr('id');
+    	var index = wishlistItems.indexOf(itemId);
+
+    	if (index === -1) {
+      // Item not in wishlist, add it
+      		wishlistItems.push(itemId);
+      		$(this).html('<i class="fa fa-heart"></i> Remove from Wishlist');
+    	} else {
+      // Item already in wishlist, remove it
+      		wishlistItems.splice(index, 1);
+			  //style="color: #000; margin-right: 5px;" class="far fa-heart"
+      		$(this).html('<i class="far fa-heart"></i> Add to Wishlist');
+    	}
+    console.log(wishlistItems); // Debugging purposes
+  });
+  
+  
+	$('#nextbtn').click(function() {
+  		$('#nextbtn').hide();
+  		$('#backbtn').show();
+  		$('#searchbtn').show();
+  		$('#home_search_form1').hide();
+  		$('#home_search_form2').show();
+  		$('#home_search_form1 input[type=checkbox]:checked').each(function() {
+    		var id = $(this).attr('id');
+    		if (!selectedIds.includes(id)) { // check if element already exists in array
+      			selectedIds.push(id);
+    		}
+  		});
+  // remove unselected items from selectedIds
+  		$('#home_search_form1 input[type=checkbox]').each(function() {
+    		var id = $(this).attr('id');
+    		if (!$(this).is(':checked') && selectedIds.includes(id)) {
+      			selectedIds.splice(selectedIds.indexOf(id), 1);
+    		}
+  		});
+	});
+
+	$('#backbtn').click(function() {
+  		$('#home_search_form1').show();
+  		$('#home_search_form2').hide();
+  		$('#nextbtn').show();
+  		$('#backbtn').hide();
+  		$('#searchbtn').hide();
+  // remove unselected items from selectedIds
+  		$('#home_search_form2 input[type=checkbox]').each(function() {
+    		var id = $(this).attr('id');
+    		if (!$(this).is(':checked') && selectedIds.includes(id)) {
+      			selectedIds.splice(selectedIds.indexOf(id), 1);
+    		}
+  		});
+	});
+
+	var field_map = {
+		'furnished': 'Furnished',
+		'parking': 'Parking',
+		'pool': 'Pool',
+		'gatedcommunity': 'Gatedcommunity',
+		'patio': 'Patio',
+		'garden': 'Garden',
+		'hardwoodfloors': 'HardwoodFloors',
+		'gym': 'Gym',
+		'disabilityaccess': 'DisabilityAccess',
+		'kidfriendly': 'Kidfriendly',
+		'washer/dryer': 'Washerdryer',
+		'dishwasher': 'Dishwasher',
+	}
+	var fields = {
+		'Furnished': false,
+		'Parking': false,
+		'Pool': false,
+		'Gatedcommunity': false,
+		'Patio': false,
+		'Garden': false,
+		'HardwoodFloors': false,
+		'Gym': false,
+		'DisabilityAccess': false,
+		'Kidfriendly': false,
+		'Washerdryer': false,
+		'Dishwasher': false
+	};
+	
+	
+
+	$('#searchbtn').click(function() {
+		$('#home_search_form2 input[type=checkbox]:checked').each(function() {
+		  var id = $(this).attr('id');
+		  
+		  	if (!selectedIds.includes(id)) 
+		  		{ // check if element already exists in array
+					selectedIds.push(id);
+		  		}
+		});
+		var bedrooms = $('#bedroomstextbox').val();
+		var radius = $('#radiustxtbox').val();
+		var propertyType = $("#property-type input[name='apartmenttype']:checked").attr('value');
+		var priceRange = $('#price-range').val();
+		debugger
+		if(bedrooms == "")
+		{
+			$('#alertpopup').show();
+			$('#alertpopup #alertcontent').html("");
+			$('#alertpopup #alertcontent').html("Please enter number of bedrooms.");
+			$('#okButton').click(function() {
+				$('#alertpopup').css("display","none");
+			});
+		}
+		else if(radius == "")
+		{
+			$('#alertpopup').show();
+			$('#alertpopup #alertcontent').html("");
+			$('#alertpopup #alertcontent').html("Please enter number of miles");
+			$('#okButton').click(function() {
+				$('#alertpopup').css("display","none");
+			});
+		}
+		else if(bedrooms > 4)
+		{
+			$('#alertpopup').show();
+			$('#alertpopup #alertcontent').html("");
+			$('#alertpopup #alertcontent').html("Please enter number of bedrooms in range 0-4");
+			$('#okButton').click(function() {
+				$('#alertpopup').css("display","none");
+			});
+		}
+		else if(radius > 20)
+		{
+			$('#alertpopup').show();
+			$('#alertpopup #alertcontent').html("");
+			$('#alertpopup #alertcontent').html("Please enter radius no longer 20 miles");
+			$('#okButton').click(function() {
+				$('#alertpopup').css("display","none");
+			});
+		}
+		else
+		{
+			$.each(selectedIds, function(index, field) {
+				if (field in field_map) {
+					fields[field_map[field]] = true;
+				}
+			});//18006544173
+			//console.log(fields);
+			var csrf_token = getCookie("csrftoken");
+			var form = $('<form>').attr({
+				method: 'post',
+				action: '/apartments',
+				//target: 'apartments.html'
+			}).append($('<input>').attr({
+				type: 'hidden',
+				name: 'fields',
+				value: JSON.stringify(fields)
+			})).append($('<input>').attr({
+				type: 'hidden',
+				name: 'bedrooms',
+				value: bedrooms
+			})).append($('<input>').attr({
+				type: 'hidden',
+				name: 'radius',
+				value: radius
+			})).append($('<input>').attr({
+				type: 'hidden',
+				name: 'propertyType',
+				value: propertyType
+			})).append($('<input>').attr({
+				type: 'hidden',
+				name: 'priceRange',
+				value: priceRange
+			})).append($('<input>').attr({
+				type: 'hidden',
+				name: 'csrfmiddlewaretoken',
+				value: csrf_token
+			}));
+			
+			$(document.body).append(form);
+			form.submit();
+		}
+	  });
+	//$('#searchbtn').click(function() {
+  	//	$('#home_search_form2 input[type=checkbox]:checked').each(function() {
+    //		var id = $(this).attr('id');
+    //		if (!selectedIds.includes(id)) { // check if element already exists in array
+    //			selectedIds.push(id);
+    //		}
+  	//	});
+	//	window.location.href = '#destinations';
+	//});
+	//console.log(selectedIds);
+	$('#chat-button').click(function() {
+		debugger
+		$('#chat-container').show();
+	  });
+	  
+	  // close chat container on click of close button
+	  $('#chat-close').click(function() {
+		$('#chat-container').hide();
+	  });
+	  var csrf_token = getCookie("csrftoken");
+	  // handle submission of chat form
+	  $('#chat-form').submit(function(event) {
+		// prevent default form submission behavior
+		event.preventDefault();
+	  
+		// get user input from chat input field
+		var userInput = $('input[name="message"]').val();
+	  
+		// display user input in chat
+		
+		$('#chat-messages').append('<li class="user-message"><div class="user-message-box">' + userInput + '</div></li>');
+	  
+		// send user input to chatbot view using AJAX
+		debugger
+		$.ajax({
+			url: '/chatbot',
+			type: 'POST',
+			headers: {'X-CSRFToken': csrf_token},
+			data: { 'message': userInput },
+			success: function(response) {
+				// display chatbot response in chat
+				var responseMessage = response.message;
+				var messageText = "";
+				if (responseMessage.includes("\n\n")) {
+				messageText = responseMessage.split("\n\n")[0];
+				} else {
+				messageText = responseMessage;
+				}
+				//$('#chat-messages').append('<li class="bot-message">' + messageText + '</li>');
+				$('#chat-messages').append('<li class="bot-message"><div class="bot-message-box">' + messageText + '</div></li>');
+				// clear chat input field
+				$('input[name="message"]').val('');
+			  },
+			error: function(xhr, status, error) {
+				$(this).html('<i class="far fa-heart"></i> Add to Wishlist');
+			  console.log('An error occurred:', error);
+			}
+		  });
+	  });	  
+});
+</script>
